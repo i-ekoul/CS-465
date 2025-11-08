@@ -57,8 +57,9 @@ img {
 }
 #navigation li {
 	float: left;
+	background-image: url(../images/bg-menu.png);
 	background-position: 0 -118px;
-	background-repeat: no-repeat;
+	background-repeat: repeat-x;
 	height: 49px;
 	width: 122px;
 	margin: 0;
@@ -475,7 +476,6 @@ hr {
 }
 #footer ul.navigation {
 	float: left;
-	display: inline-block;
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -507,7 +507,6 @@ hr {
 /** Connect **/
 #connect {
 	float: right;
-	display: inline-block;
 	line-height: 26px;
 	margin: 12px 0 0;
 }
