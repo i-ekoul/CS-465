@@ -7,7 +7,7 @@ Emmalie S. Cole | CS-465 @SNHU
 
 ---
 
-MODULE 3 - 2025-01-XX
+MODULE 3 - 2025-11-26
 ---------------------
 
 ADDED:
