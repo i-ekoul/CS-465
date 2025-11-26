@@ -1,0 +1,20 @@
+<div class="box">
+	<div>
+		<div class="body">
+			<h1>Rooms</h1>
+			<ul id="rooms">
+				{{#each rooms}}
+				<li>
+					<a href="/rooms"><img src="/images/{{image}}" alt="Img"></a>
+					<h2><a href="/rooms">{{name}}</a></h2>
+					<p>
+						{{description}}
+					</p>
+					<span class="rate">Rate: {{rate}} / Day</span>
+				</li>
+				{{/each}}
+			</ul>
+		</div>
+	</div>
+</div>
+

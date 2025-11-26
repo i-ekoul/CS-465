@@ -22,6 +22,11 @@ app.set('view options', {
 // register Handlebars partials
 hbs.registerPartials(path.join(__dirname, 'app_server', 'views', 'partials'));
 
+// register Handlebars helper for equality check
+hbs.registerHelper('eq', function(a, b) {
+    return a === b;
+});
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

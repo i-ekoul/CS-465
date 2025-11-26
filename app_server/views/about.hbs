@@ -1,0 +1,33 @@
+<div class="box">
+	<div>
+		<div class="body">
+			<h1>About</h1>
+			<h2>{{intro.title}}</h2>
+			{{#each intro.paragraphs}}
+			<p>
+				{{{this}}}
+			</p>
+			{{/each}}
+			<hr>
+			<div class="ads">
+				<h2>{{sections.crews.title}}</h2>
+				<p>
+					{{sections.crews.description}}
+				</p>
+				<h2>{{sections.amenities.title}}</h2>
+				<p>
+					{{sections.amenities.description}}
+				</p>
+			</div>
+			<h2>{{community.title}}</h2>
+			<p>
+				{{{community.description}}}
+			</p>
+			<h2>{{template.title}}</h2>
+			<p>
+				{{{template.description}}}
+			</p>
+		</div>
+	</div>
+</div>
+

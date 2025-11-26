@@ -7,6 +7,55 @@ Emmalie S. Cole | CS-465 @SNHU
 
 ---
 
+MODULE 3 - 2025-01-XX
+---------------------
+
+ADDED:
+
+- Created HBS templates for all remaining pages:
+  * rooms.hbs - Rooms page template with dynamic room data
+  * meals.hbs - Meals page template with dynamic meal data
+  * news.hbs - News page template with dynamic news and tips data
+  * about.hbs - About page template with dynamic content sections
+  * contact.hbs - Contact page template with dynamic company information
+- Added JSON data structures in controllers for dynamic content:
+  * Rooms: name, image, description, rate
+  * Meals: name, image, special, description
+  * News: latestNews array, vacationTips array, featured article with paragraphs
+  * About: intro, sections (crews, amenities), community, template details
+  * Contact: company information (name, address, telephone, fax)
+- Registered Handlebars helper function 'eq' for equality comparisons in templates
+- Dynamic page highlighting in navigation (header and footer partials)
+
+CHANGED:
+
+- Updated app_server/controllers/main.js:
+  * Converted all page controllers from static HTML file serving to dynamic HBS rendering
+  * Added JSON data objects for rooms, meals, news, about, and contact pages
+  * Added 'page' parameter to all controllers for navigation highlighting
+- Updated app_server/controllers/travel.js:
+  * Added 'page' parameter for navigation highlighting
+- Updated app_server/views/partials/header.hbs:
+  * Made navigation items dynamically highlight based on current page using Handlebars 'eq' helper
+- Updated app_server/views/partials/footer.hbs:
+  * Made footer navigation items dynamically highlight based on current page using Handlebars 'eq' helper
+- Updated app.js:
+  * Registered Handlebars 'eq' helper function for template conditionals
+
+REMOVED:
+
+- Removed static HTML file serving from controllers (rooms, meals, news, about, contact)
+- All pages now use dynamic HBS templates instead of static HTML files
+
+NOTES:
+
+- Module 3 completes the transition from static HTML to dynamic JSON-driven HBS templates
+- All pages now follow MVC architecture with controllers passing JSON data to views
+- Navigation highlighting is now dynamic and automatically updates based on current route
+- All content is now data-driven, making it easier to update and maintain
+
+---
+
 MODULE 2 - 2025-11-08
 ---------------------
 
