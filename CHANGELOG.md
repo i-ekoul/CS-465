@@ -7,7 +7,50 @@ Emmalie S. Cole | CS-465 @SNHU
 
 ---
 
-MODULE 4 - 2025-01-30
+MODULE 5 - 2025-12-2
+--------------------
+
+ADDED:
+
+- Created app_api/ directory structure implementing Separation of Concerns:
+  * app_api/controllers/trips.js - API controller refactored from app_server with improved error handling
+  * app_api/routes/index.js - Standardized API route definitions for RESTful endpoints
+- Enhanced error handling in API controllers:
+  * 200 status for successful responses400 status for bad requests (missing parameters)
+  * 404 status for not found resources
+  * 500 status for server errors with detailed error messages
+- Standardized route naming conventions:
+  * GET /api/trips - Retrieve all trips collection
+  * GET /api/trips/:tripCode - Retrieve single trip by code parameter
+
+CHANGED:
+
+- Updated app.js:
+  * Replaced app_server/routes/trips with app_api/routes/index for API endpoints
+  * Mounted API routes at /api endpoint using app.use('/api', apiRouter)
+  * Maintained separation between website routes (app_server) and API routes (app_api)
+- Refactored API controller (app_api/controllers/trips.js):
+  * Improved error handling with comprehensive HTTP status codes
+  * Added parameter validation for tripCode
+  * Enhanced error messages with both error type and detailed message
+  * Handles empty trip collections gracefully (returns empty array with 200 status)
+
+NOTES:
+
+- Module 5 implements Separation of Concerns by creating dedicated app_api directory
+- API layer is now separate from website/views layer, allowing for:
+  * Independent API development and testing
+  * Support for multiple client types (Angular SPA, Express backend, external callers)
+  * Easier maintenance and future scalability
+- Models remain in app_server/models as shared resources between API and website
+- All API endpoints use Mongoose FIND methods for database queries
+- Route parameters use standardized naming: tripCode for trip identification
+- API endpoints return JSON format suitable for RESTful API consumption
+- Error responses include both error type and descriptive messages for better debugging
+
+---
+
+MODULE 4 - 2025-11-30
 ---------------------
 
 ADDED:

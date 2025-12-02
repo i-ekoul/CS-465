@@ -10,7 +10,7 @@ require('./app_server/models/db');
 
 var indexRouter = require('./app_server/routes/index');
 var travelRouter = require('./app_server/routes/travel');
-var tripsRouter = require('./app_server/routes/trips');
+var apiRouter = require('./app_api/routes/index');
 var usersRouter = require('./app_server/routes/users');
 
 var app = express();
@@ -39,7 +39,7 @@ app.use(cookieParser());
 // Routes must come before static files to take precedence
 app.use('/', indexRouter);
 app.use('/travel', travelRouter);
-app.use('/api/trips', tripsRouter);
+app.use('/api', apiRouter);
 app.use('/users', usersRouter);
 
 // Static files (CSS, images, etc.) - after routes
