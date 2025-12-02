@@ -1,0 +1,35 @@
+[
+    {
+        "code": "OCEAN-2024-001",
+        "name": "Tropical Paradise Getaway",
+        "length": "7",
+        "start": "2024-06-15",
+        "resort": "Paradise Beach Resort",
+        "perPerson": "1299",
+        "image": "reef1.jpg",
+        "description": "Experience the ultimate tropical vacation with crystal-clear waters, white sandy beaches, and world-class diving. This 7-day package includes luxury accommodations, daily breakfast, and access to exclusive snorkeling and diving sites."
+    },
+    {
+        "code": "OCEAN-2024-002",
+        "name": "Adventure Diving Expedition",
+        "length": "5",
+        "start": "2024-07-20",
+        "resort": "Coral Reef Lodge",
+        "perPerson": "899",
+        "image": "reef2.jpg",
+        "description": "Perfect for diving enthusiasts! Explore multiple reef sites, encounter diverse marine life, and enjoy professional diving instruction. Package includes all diving equipment, guided tours, and comfortable beachfront accommodations."
+    },
+    {
+        "code": "OCEAN-2024-003",
+        "name": "Luxury Island Retreat",
+        "length": "10",
+        "start": "2024-08-10",
+        "resort": "Island Grand Resort",
+        "perPerson": "2499",
+        "image": "reef3.jpg",
+        "description": "Indulge in a premium 10-day island experience featuring private beach access, spa treatments, gourmet dining, and exclusive excursions. This all-inclusive package offers the perfect blend of relaxation and adventure in a stunning tropical setting."
+    }
+]
+
+
+

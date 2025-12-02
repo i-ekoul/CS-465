@@ -7,6 +7,57 @@ Emmalie S. Cole | CS-465 @SNHU
 
 ---
 
+MODULE 4 - 2025-01-30
+---------------------
+
+ADDED:
+
+- Created app_server/models/ directory with database modules:
+  * db.js - MongoDB connection module using Mongoose with connection event handlers and graceful shutdown
+  * trip.js - Trip schema model with validation (all fields required) and indexes on 'code' and 'name' fields
+  * trips.json - Seed data file with 3 sample trips suitable for Travlr Getaways
+  * seed.js - Database seeding script that converts date strings to Date objects and inserts trips
+- Added Mongoose package dependency to package.json (^8.20.1)
+- Created RESTful API endpoints for trips:
+  * GET /api/trips - Retrieve all trips in JSON format
+  * GET /api/trips/:tripCode - Retrieve single trip by code with 404 error handling
+- Created app_server/controllers/trips.js - API controller with tripsList and tripsFindByCode functions
+- Created app_server/routes/trips.js - API routes for trips endpoints
+- Date formatting logic in travel controller for user-friendly date display
+
+CHANGED:
+
+- Updated app.js:
+  * Added database connection initialization (require('./app_server/models/db'))
+  * Registered /api/trips route for RESTful API endpoints
+- Updated app_server/controllers/travel.js:
+  * Changed from static data to async function fetching from MongoDB using Trip.find()
+  * Formats dates using toLocaleDateString() for display (startFormatted field)
+  * Added error handling with try/catch and console logging
+  * Converts Mongoose documents to plain objects for template rendering
+- Updated app_server/views/travel.hbs:
+  * Changed from hardcoded trips to dynamic {{#each trips}} loop
+  * Added conditional check {{#if trips}} to handle empty trip list
+  * Displays trip data from MongoDB (name, description, length, startFormatted, perPerson, image)
+  * Uses formatted date (startFormatted) instead of raw date object
+- Updated package.json:
+  * Added mongoose dependency (^8.20.1)
+
+NOTES:
+
+- Module 4 implements MongoDB database integration with Mongoose ODM
+- Trip schema includes indexes on 'code' and 'name' fields for faster retrieval
+- Start dates are stored using ISO standard date format (Date objects)
+- Database collection is named 'trips' as specified
+- Seed script removes existing trips before inserting new ones (deleteMany then insertMany)
+- Seed script converts date strings from JSON to Date objects before insertion
+- API endpoints return JSON data for future Angular SPA integration
+- Travel page now uses database data instead of hardcoded JSON
+- Date formatting handled in controller for consistent display format
+- All API endpoints include proper error handling with appropriate HTTP status codes
+
+---
+
 MODULE 3 - 2025-11-26
 ---------------------
 
