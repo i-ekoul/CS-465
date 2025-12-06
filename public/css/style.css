@@ -331,10 +331,15 @@ hr {
 #sites li {
 	padding-bottom: 0;
 }
-#sites li img {
+#sites li img,
+#sites li .trip-image {
 	float: right;
 	border: 1px solid #2c9688;
 	margin-left: 15px;
+	width: 300px;
+	height: 200px;
+	object-fit: cover;
+	display: block;
 }
 /** News **/
 #news {

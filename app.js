@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var hbs = require('hbs');
+var cors = require('cors');
 
 // Database connection
 require('./app_server/models/db');
@@ -30,6 +31,12 @@ hbs.registerPartials(path.join(__dirname, 'app_server', 'views', 'partials'));
 hbs.registerHelper('eq', function(a, b) {
     return a === b;
 });
+
+// Enable CORS for Angular app
+app.use(cors({
+    origin: 'http://localhost:4200',
+    credentials: true
+}));
 
 app.use(logger('dev'));
 app.use(express.json());

@@ -1,0 +1,17 @@
+nav {
+  margin-bottom: 2rem;
+}
+
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.nav-link.active {
+  font-weight: 500;
+}
+
+main {
+  min-height: calc(100vh - 200px);
+}
+

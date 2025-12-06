@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Travel Admin – Trips</h1>
+    <button class="btn btn-primary" (click)="onAddTrip()">Add Trip</button>
+  </div>
+
+  <div *ngIf="loading" class="text-center">
+    <p>Loading trips...</p>
+  </div>
+
+  <div *ngIf="error" class="alert alert-danger" role="alert">
+    {{ error }}
+  </div>
+
+  <div *ngIf="!loading && !error && trips.length === 0" class="alert alert-info" role="alert">
+    No trips found. Click "Add Trip" to create your first trip.
+  </div>
+
+  <div *ngIf="!loading && trips.length > 0" class="row">
+    <div class="col-md-6 col-lg-4 mb-4" *ngFor="let trip of trips">
+      <app-trip-card [trip]="trip" (delete)="onDelete($event)"></app-trip-card>
+    </div>
+  </div>
+</div>
+

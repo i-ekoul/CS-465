@@ -1,0 +1,94 @@
+<div class="container">
+  <h1>Edit Trip</h1>
+
+  <div *ngIf="loadingTrip" class="text-center">
+    <p>Loading trip...</p>
+  </div>
+
+  <div *ngIf="error" class="alert alert-danger" role="alert">
+    {{ error }}
+  </div>
+
+  <form [formGroup]="tripForm" (ngSubmit)="onSubmit()" *ngIf="!loadingTrip">
+    <div class="mb-3">
+      <label for="code" class="form-label">Trip Code *</label>
+      <input type="text" class="form-control" id="code" formControlName="code" 
+             [class.is-invalid]="tripForm.get('code')?.invalid && tripForm.get('code')?.touched">
+      <div class="invalid-feedback" *ngIf="getFieldError('code')">
+        {{ getFieldError('code') }}
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="name" class="form-label">Trip Name *</label>
+      <input type="text" class="form-control" id="name" formControlName="name"
+             [class.is-invalid]="tripForm.get('name')?.invalid && tripForm.get('name')?.touched">
+      <div class="invalid-feedback" *ngIf="getFieldError('name')">
+        {{ getFieldError('name') }}
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="length" class="form-label">Length (days) *</label>
+      <input type="number" class="form-control" id="length" formControlName="length"
+             [class.is-invalid]="tripForm.get('length')?.invalid && tripForm.get('length')?.touched">
+      <div class="invalid-feedback" *ngIf="getFieldError('length')">
+        {{ getFieldError('length') }}
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="start" class="form-label">Start Date *</label>
+      <input type="date" class="form-control" id="start" formControlName="start"
+             [class.is-invalid]="tripForm.get('start')?.invalid && tripForm.get('start')?.touched">
+      <div class="invalid-feedback" *ngIf="getFieldError('start')">
+        {{ getFieldError('start') }}
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="resort" class="form-label">Resort *</label>
+      <input type="text" class="form-control" id="resort" formControlName="resort"
+             [class.is-invalid]="tripForm.get('resort')?.invalid && tripForm.get('resort')?.touched">
+      <div class="invalid-feedback" *ngIf="getFieldError('resort')">
+        {{ getFieldError('resort') }}
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="perPerson" class="form-label">Price per Person *</label>
+      <input type="number" class="form-control" id="perPerson" formControlName="perPerson" step="0.01"
+             [class.is-invalid]="tripForm.get('perPerson')?.invalid && tripForm.get('perPerson')?.touched">
+      <div class="invalid-feedback" *ngIf="getFieldError('perPerson')">
+        {{ getFieldError('perPerson') }}
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="image" class="form-label">Image URL *</label>
+      <input type="text" class="form-control" id="image" formControlName="image"
+             [class.is-invalid]="tripForm.get('image')?.invalid && tripForm.get('image')?.touched">
+      <div class="invalid-feedback" *ngIf="getFieldError('image')">
+        {{ getFieldError('image') }}
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Description *</label>
+      <textarea class="form-control" id="description" formControlName="description" rows="4"
+                [class.is-invalid]="tripForm.get('description')?.invalid && tripForm.get('description')?.touched"></textarea>
+      <div class="invalid-feedback" *ngIf="getFieldError('description')">
+        {{ getFieldError('description') }}
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn btn-secondary" (click)="onCancel()" [disabled]="loading">Cancel</button>
+      <button type="submit" class="btn btn-primary" [disabled]="loading || tripForm.invalid">
+        <span *ngIf="loading">Updating...</span>
+        <span *ngIf="!loading">Update Trip</span>
+      </button>
+    </div>
+  </form>
+</div>
+

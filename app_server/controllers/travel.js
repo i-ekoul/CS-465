@@ -17,6 +17,10 @@ module.exports.travel = async function(req, res) {
                     day: 'numeric' 
                 });
             }
+            // Log image field for debugging
+            if (tripObj.name && tripObj.name.includes('Azure')) {
+                console.log('Azure Lagoon Escape image field:', tripObj.image);
+            }
             return tripObj;
         });
         

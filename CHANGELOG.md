@@ -7,8 +7,8 @@ Emmalie S. Cole | CS-465 @SNHU
 
 ---
 
-MODULE 5 - 2025-12-2
---------------------
+MODULE 5 - 2025-12-02
+---------------------
 
 ADDED:
 
@@ -16,7 +16,7 @@ ADDED:
   * app_api/controllers/trips.js - API controller refactored from app_server with improved error handling
   * app_api/routes/index.js - Standardized API route definitions for RESTful endpoints
 - Enhanced error handling in API controllers:
-  * 200 status for successful responses400 status for bad requests (missing parameters)
+  * 200 status for successful responses00 status for bad requests (missing parameters)
   * 404 status for not found resources
   * 500 status for server errors with detailed error messages
 - Standardized route naming conventions:

@@ -6,7 +6,11 @@
 			<ul id="sites">
 				{{#each trips}}
 				<li>
-					<img src="/images/{{image}}" alt="Img">
+					{{#if image}}
+					<img src="/images/{{image}}" alt="{{name}}" class="trip-image">
+					{{else}}
+					<!-- Image field is missing for {{name}} -->
+					{{/if}}
 					<h2>{{name}}</h2>
 					<p>
 						{{description}}
