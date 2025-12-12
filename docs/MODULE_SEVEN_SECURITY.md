@@ -4,8 +4,9 @@
 
 This document describes the security layer implementation for the Travlr Getaways admin system. The implementation adds JWT-based authentication to protect administrative endpoints while keeping public endpoints accessible.
 
-## Admin Credentials**mail:**`admin@example.com`
+## Admin Credentials
 
+**Email:** `admin@example.com`  
 **Password:** `P@ssw0rd`
 
 ## Backend Implementation
