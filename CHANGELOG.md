@@ -7,6 +7,137 @@ Emmalie S. Cole | CS-465 @SNHU
 
 ---
 
+MODULE 7 - 2025-12-12
+---------------------
+
+ADDED:
+
+- Created authentication and authorization system for admin endpoints:
+  * app_api/models/user.js - User Mongoose model with email (unique), name, and bcryptjs-hashed password
+  * app_api/controllers/auth.js - Login controller with POST /api/login endpoint
+  * app_api/middleware/auth.js - JWT authentication middleware for protected routes
+  * app_api/models/seed-user.js - Admin user seed script (admin@example.com / P@ssw0rd)
+- Added JWT-based authentication:
+  * Token generation on successful login (1-hour expiration)
+  * Token verification middleware for protected endpoints
+  * Authorization header parsing (Bearer token format)
+- Protected administrative API endpoints:
+  * POST /api/trips - Now requires authentication
+  * PUT /api/trips/:tripCode - Now requires authentication
+  * DELETE /api/trips/:tripCode - Now requires authentication
+- Created Angular authentication components and services:
+  * admin/src/app/services/auth.service.ts - Authentication service with login/logout/token management
+  * admin/src/app/auth/login.component.ts - Login form component
+  * admin/src/app/auth/login.component.html - Login form template with Bootstrap styling
+  * admin/src/app/auth/login.component.css - Login component styles
+  * admin/src/app/auth/auth.guard.ts - Route guard for protecting admin routes
+- Added npm script for seeding admin user:
+  * "seed:user": "node app_api/models/seed-user.js"
+
+CHANGED:
+
+- Updated app_api/routes/index.js:
+  * Added POST /api/login route (public)
+  * Applied auth middleware to POST, PUT, DELETE routes for /api/trips
+  * GET routes remain public (for customer-facing site compatibility)
+- Updated app_server/models/db.js:
+  * Added User model import to register schema with Mongoose
+- Updated admin/src/app/services/trip-data.service.ts:
+  * Injected AuthService dependency
+  * Added getAuthHeaders() method to include JWT token in requests
+  * POST, PUT, DELETE methods now include Authorization header with Bearer token
+  * GET methods remain unchanged (public endpoints)
+- Updated admin/src/app/app-routing.module.ts:
+  * Added /login route (public, no guard)
+  * Applied AuthGuard to /trips, /trips/add, /trips/:code/edit routes
+  * Unauthenticated users redirected to /login
+- Updated admin/src/app/app.module.ts:
+  * Added LoginComponent to declarations
+- Updated admin/src/app/app.component.ts:
+  * Added AuthService injection and login state tracking
+  * Added logout() method
+  * Subscribes to token$ observable for login state
+- Updated admin/src/app/app.component.html:
+  * Added conditional navbar display (*ngIf="isLoggedIn")
+  * Added logout button in navbar
+- Updated package.json:
+  * Added bcryptjs@^2.4.3 dependency (pure JavaScript, no native compilation required)
+  * Added jsonwebtoken@^9.0.2 dependency
+  * Added seed:user script
+
+NOTES:
+
+- Module 7 implements JWT-based authentication and authorization for admin operations
+- bcryptjs chosen over bcrypt for Windows compatibility (no native compilation required)
+- GET endpoints remain public to maintain compatibility with customer-facing Handlebars site (/travel)
+- JWT tokens stored in localStorage, expire after 1 hour
+- Admin credentials: admin@example.com / P@ssw0rd (created via seed script)
+- Seed script is idempotent - safe to run multiple times
+- Authentication flow: Login → Token generation → Token storage → Protected requests include token → Server verifies token
+- Route guards prevent unauthorized access to admin pages in Angular SPA
+- All existing functionality preserved - customer-facing site continues to work without authentication
+- Security layer added without breaking existing CRUD operations from Modules 5 and 6
+
+---
+
+MODULE 6 - 2025-12-06
+---------------------
+
+ADDED:
+
+- Created Angular 17 admin Single Page Application (SPA) in admin/ folder:
+  * admin/package.json - Angular project dependencies and scripts
+  * admin/angular.json - Angular CLI configuration with proxy setup for API calls
+  * admin/tsconfig.json - TypeScript configuration
+  * admin/proxy.conf.json - Proxy configuration to forward /api requests to http://localhost:3000
+- Created Angular application structure:
+  * admin/src/app/models/trip.ts - Trip TypeScript interface matching backend schema
+  * admin/src/app/services/trip-data.service.ts - HTTP service for API calls using HttpClient
+  * admin/src/app/trips/trip-list.component.* - Trip list view component with card display
+  * admin/src/app/trips/trip-card.component.* - Reusable trip card component
+  * admin/src/app/trips/trip-add.component.* - Add new trip form component
+  * admin/src/app/trips/trip-edit.component.* - Edit existing trip form component
+  * admin/src/app/app.module.ts - Main Angular module with HttpClientModule and ReactiveFormsModule
+  * admin/src/app/app-routing.module.ts - Routing configuration for SPA navigation
+  * admin/src/app/app.component.* - Root component with navigation bar
+- Implemented full CRUD operations:
+  * GET /api/trips - List all trips (TripListComponent)
+  * GET /api/trips/:tripCode - Get single trip (TripEditComponent)
+  * POST /api/trips - Create new trip (TripAddComponent)
+  * PUT /api/trips/:tripCode - Update trip (TripEditComponent)
+  * DELETE /api/trips/:tripCode - Delete trip (TripListComponent)
+- Created environment configuration:
+  * admin/src/environments/environment.ts - Development environment with API base URL
+  * admin/src/environments/environment.prod.ts - Production environment configuration
+
+CHANGED:
+
+- Updated app_api/controllers/trips.js:
+  * Added tripsCreate function for POST /api/trips endpoint
+  * Added tripsUpdateOne function for PUT /api/trips/:tripCode endpoint
+  * Added tripsDeleteOne function for DELETE /api/trips/:tripCode endpoint
+  * Enhanced error handling with validation and appropriate HTTP status codes
+- Updated app_api/routes/index.js:
+  * Added POST /api/trips route
+  * Added PUT /api/trips/:tripCode route
+  * Added DELETE /api/trips/:tripCode route
+
+NOTES:
+
+- Module 6 implements the Angular admin SPA for managing trips
+- Full CRUD functionality integrated with existing Express API from Module 5
+- Angular app runs on http://localhost:4200, proxies API calls to http://localhost:3000
+- All REST verbs (GET, POST, PUT, DELETE) properly implemented and tested
+- TripDataService uses RxJS Observables for async HTTP operations
+- Reactive forms used for trip add/edit with validation
+- Component-based architecture follows Angular best practices
+- Proxy configuration allows CORS-free development without backend CORS changes
+- Trip interface matches backend Mongoose schema for type safety
+- Error handling implemented in service layer with proper error propagation
+- Routing configured for SPA navigation: /trips, /trips/add, /trips/:code/edit
+
+---
+
 MODULE 5 - 2025-12-02
 ---------------------
 

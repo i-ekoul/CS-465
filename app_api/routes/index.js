@@ -1,21 +1,26 @@
 var express = require('express');
 var router = express.Router();
 var ctrlTrips = require('../controllers/trips');
+var ctrlAuth = require('../controllers/auth');
+var auth = require('../middleware/auth');
 
-/* GET list of trips */
+/* POST login */
+router.post('/login', ctrlAuth.login);
+
+/* GET list of trips - Public */
 router.get('/trips', ctrlTrips.tripsList);
 
-/* GET single trip by code */
+/* GET single trip by code - Public */
 router.get('/trips/:tripCode', ctrlTrips.tripsFindByCode);
 
-/* POST create new trip */
-router.post('/trips', ctrlTrips.tripsCreate);
+/* POST create new trip - Protected */
+router.post('/trips', auth.authenticate, ctrlTrips.tripsCreate);
 
-/* PUT update trip by code */
-router.put('/trips/:tripCode', ctrlTrips.tripsUpdateOne);
+/* PUT update trip by code - Protected */
+router.put('/trips/:tripCode', auth.authenticate, ctrlTrips.tripsUpdateOne);
 
-/* DELETE trip by code */
-router.delete('/trips/:tripCode', ctrlTrips.tripsDeleteOne);
+/* DELETE trip by code - Protected */
+router.delete('/trips/:tripCode', auth.authenticate, ctrlTrips.tripsDeleteOne);
 
 module.exports = router;
 
